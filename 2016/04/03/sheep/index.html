@@ -87,17 +87,11 @@
 View的绘制过程
 ViewGroup的绘制过程
 scroll是怎么发生的
-其他琐碎的小点
-
-写在前面写这篇文章的原因有以下几点：
-
-在网上找的关于scroll的文章都没有真正解释如何scrollX 和scrollY是如何起作用的。
-scrollTo和scrollBy对view有什么作用。
-scrollTo和scroll">
+其他琐碎的小点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="View的绘制流程">
 <meta property="og:url" content="http://yoursite.com/2016/04/03/sheep/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="icy0307">
 <meta property="og:description" content="View的绘制流程目录
 
 写在前面
@@ -105,15 +99,9 @@ scrollTo和scroll">
 View的绘制过程
 ViewGroup的绘制过程
 scroll是怎么发生的
-其他琐碎的小点
-
-写在前面写这篇文章的原因有以下几点：
-
-在网上找的关于scroll的文章都没有真正解释如何scrollX 和scrollY是如何起作用的。
-scrollTo和scrollBy对view有什么作用。
-scrollTo和scroll">
+其他琐碎的小点">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201212/08/1354900406_7918.jpg">
-<meta property="og:updated_time" content="2016-04-11T07:13:12.000Z">
+<meta property="og:updated_time" content="2016-04-11T07:47:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View的绘制流程">
 <meta name="twitter:description" content="View的绘制流程目录
@@ -123,13 +111,7 @@ scrollTo和scroll">
 View的绘制过程
 ViewGroup的绘制过程
 scroll是怎么发生的
-其他琐碎的小点
-
-写在前面写这篇文章的原因有以下几点：
-
-在网上找的关于scroll的文章都没有真正解释如何scrollX 和scrollY是如何起作用的。
-scrollTo和scrollBy对view有什么作用。
-scrollTo和scroll">
+其他琐碎的小点">
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/08/1354900406_7918.jpg">
 
 
@@ -148,10 +130,10 @@ scrollTo和scroll">
   };
 </script>
 
-  <title> View的绘制流程 | Hexo </title>
+  <title> View的绘制流程 | icy0307 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN,default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
 
   
 
@@ -179,7 +161,7 @@ scrollTo和scroll">
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hexo</span>
+      <span class="site-title">icy0307</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -206,7 +188,27 @@ scrollTo和scroll">
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Startseite
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
           </a>
         </li>
       
@@ -216,7 +218,7 @@ scrollTo和scroll">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -279,7 +281,7 @@ scrollTo和scroll">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-03T15:33:57+08:00" content="2016-04-03">
               2016-04-03
             </time>
@@ -291,7 +293,7 @@ scrollTo和scroll">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/android-ui/" itemprop="url" rel="index">
@@ -307,6 +309,13 @@ scrollTo和scroll">
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/03/sheep/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/sheep/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -336,6 +345,7 @@ scrollTo和scroll">
 <li><a href="#chapter_4">scroll是怎么发生的</a></li>
 <li><a href="#chapter_5">其他琐碎的小点</a></li>
 </ol>
+<a id="more"></a>
 <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><a name="preliminaries"></a>写在前面</h2><p>写这篇文章的原因有以下几点：</p>
 <ol>
 <li>在网上找的关于scroll的文章都没有真正解释如何scrollX 和scrollY是如何起作用的。</li>
@@ -346,7 +356,6 @@ scrollTo和scroll">
 <li><a href="#problem_6_answer">margin和padding在view的绘制过程中起了什么作用</a>（注意是绘制）</li>
 </ol>
 <p>还有一些奇奇怪怪的问题，例如view scroll了背景跟着scroll吗<br>这些问题都直接指向了view的draw流程，使人希望对view的draw过程有个更深入的了解。这里主要的侧重点在view的draw过程上，就是<strong>一个view或viewGroup的内容是怎么画在canvas上的</strong>，不对measure和layout pass做更多描述。而且为了简化过程，以下都默认关闭了硬件加速。</p>
-<a id="more"></a>
 <h2 id="最早的canvas是如何得到的-本文不重要"><a href="#最早的canvas是如何得到的-本文不重要" class="headerlink" title="最早的canvas是如何得到的(本文不重要)"></a><a name="chapter_1"></a>最早的canvas是如何得到的(本文不重要)</h2><p>（这部分可以跳过，主要讲的是最早的canvas和draw<br>直接看结论：<strong><em>最根部的view是属于phoneWindow的decorView，它是一个FrameLayout,ViewRootImpl在performTraversal里完成measure pass 和layout pass,然后通过mSurface获取canvas，并调用这个decorView作为FrameLayout的draw方法，把canvas一层层传下去。</em></strong>）</p>
 <p><img src="http://img.my.csdn.net/uploads/201212/08/1354900406_7918.jpg" alt="应用程序窗口视图的创建过程"></p>
 <p>在<a href="http://blog.csdn.net/luoshengyang/article/details/8245546" target="_blank" rel="external">老罗的博客</a>中，他介绍了activity的窗口对象的创建流程。<br>这不是本文的重点所以不加以赘述。只是简单的描述下过程。(描述过程的原因是博客里的 API 版本过旧，这里用23版本的sdk再走一遍流程，很多地方不是很详细，尤其是performTraversals,这里自己也没有深入去看，只是让自己有个大概的印象，<strong>了解真正的view的绘制过程可以跳过这一节</strong>)</p>
@@ -528,6 +537,10 @@ scroller-->
           
   <div class="comments" id="comments">
     
+      <div class="ds-thread" data-thread-key="2016/04/03/sheep/"
+           data-title="View的绘制流程" data-url="http://yoursite.com/2016/04/03/sheep/">
+      </div>
+    
   </div>
 
 
@@ -551,10 +564,10 @@ scroller-->
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -562,25 +575,25 @@ scroller-->
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               src="/images/avatar.jpeg"
+               alt="icy0307" />
+          <p class="site-author-name" itemprop="name">icy0307</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
-              
+                <span class="site-state-item-name">categories</span>
+              </a>
             </div>
           
 
@@ -588,7 +601,7 @@ scroller-->
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -641,11 +654,11 @@ scroller-->
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">icy0307</span>
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -732,9 +745,28 @@ scroller-->
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"icy0307"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
