@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,tips," />
 
 
 
@@ -80,19 +80,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="形参为final的意义？tip转化生产力 :用final修饰的参数肯定在这个类里有同名已经存在，并且它的值将要被修改
+Why should I use the keyword “final” on a method parameter in Java?我们知道，java传参一直传的是参数的拷贝，基本类型就是基本类型的拷贝，引用就是引用的拷贝。那么这就引出了一个问题，在源码中，经常能看到
+1publ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/04/03/hello-world/index.html">
+<meta property="og:title" content="java tip：形参为final的意义">
+<meta property="og:url" content="http://yoursite.com/2016/04/20/java-tip-final/index.html">
 <meta property="og:site_name" content="icy0307">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-04-03T07:22:18.000Z">
+<meta property="og:description" content="形参为final的意义？tip转化生产力 :用final修饰的参数肯定在这个类里有同名已经存在，并且它的值将要被修改
+Why should I use the keyword “final” on a method parameter in Java?我们知道，java传参一直传的是参数的拷贝，基本类型就是基本类型的拷贝，引用就是引用的拷贝。那么这就引出了一个问题，在源码中，经常能看到
+1publ">
+<meta property="og:updated_time" content="2016-05-16T09:04:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="java tip：形参为final的意义">
+<meta name="twitter:description" content="形参为final的意义？tip转化生产力 :用final修饰的参数肯定在这个类里有同名已经存在，并且它的值将要被修改
+Why should I use the keyword “final” on a method parameter in Java?我们知道，java传参一直传的是参数的拷贝，基本类型就是基本类型的拷贝，引用就是引用的拷贝。那么这就引出了一个问题，在源码中，经常能看到
+1publ">
 
 
 
@@ -110,7 +113,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | icy0307 </title>
+  <title> java tip：形参为final的意义 | icy0307 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -250,7 +253,7 @@ Quick">
             
             
               
-                Hello World
+                java tip：形参为final的意义
               
             
           </h1>
@@ -262,19 +265,38 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T15:22:18+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2016-04-20T15:33:57+08:00" content="2016-04-20">
+              2016-04-20
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/03/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/04/20/java-tip-final/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/java-tip-final/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -297,15 +319,17 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="形参为final的意义？"><a href="#形参为final的意义？" class="headerlink" title="形参为final的意义？"></a>形参为final的意义？</h1><p><strong>tip转化生产力</strong> :<em>用final修饰的参数肯定在这个类里有同名已经存在，并且它的值将要被修改</em></p>
+<h2 id="Why-should-I-use-the-keyword-“final”-on-a-method-parameter-in-Java"><a href="#Why-should-I-use-the-keyword-“final”-on-a-method-parameter-in-Java" class="headerlink" title="Why should I use the keyword “final” on a method parameter in Java?"></a>Why should I use the keyword “final” on a method parameter in Java?</h2><p>我们知道，java传参一直传的是参数的拷贝，基本类型就是基本类型的拷贝，引用就是引用的拷贝。<br>那么这就引出了一个问题，在源码中，经常能看到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ViewParent <span class="title">invalidateChildInParent</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span>[] location, <span class="keyword">final</span> Rect dirty)</span></span></span><br></pre></td></tr></table></figure>
+<p>这样的方法。<br>既然传递的是拷贝了，把拷贝设成final有什么意义呢？反正原值是不会变更的呀。</p>
+<p>google了一下<a href="http://stackoverflow.com/questions/500508/why-should-i-use-the-keyword-final-on-a-method-parameter-in-java" target="_blank" rel="external">答案</a></p>
+<blockquote>
+<p>Sometimes its nice to be explicit(for readability) that the variable doesn’t change. Here’s a simple example where using final can save some possible headaches</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTest</span><span class="params">(String test)</span> </span>&#123;</span><br><span class="line">    test = test;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if you forget the ‘this’ keyword on a setter the variable you want to set doesn’t get set. However if you used the final keyword on the parameter then the bug would be caught at compile time.</p>
+</blockquote>
+<p>所以代表了什么呢？   <em>用final修饰的参数肯定在这个类里有同名已经存在，并且它的值将要被修改</em></p>
 
       
     </div>
@@ -324,17 +348,29 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+            <a href="/tags/tips/" rel="tag">#tips</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/20/operating-system-note-file-system/" rel="next" title="operating_system_note_file_system">
+                <i class="fa fa-chevron-left"></i> operating_system_note_file_system
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/03/sheep/" rel="prev" title="View的绘制流程">
-                View的绘制流程 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/16/java-tip-enum和gson的搭配使用/" rel="prev" title="java tip: enum和gson的搭配使用">
+                java tip: enum和gson的搭配使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -361,8 +397,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/03/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2016/04/03/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/04/20/java-tip-final/"
+           data-title="java tip：形参为final的意义" data-url="http://yoursite.com/2016/04/20/java-tip-final/">
       </div>
     
   </div>
@@ -455,7 +491,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#形参为final的意义？"><span class="nav-number">1.</span> <span class="nav-text">形参为final的意义？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-should-I-use-the-keyword-“final”-on-a-method-parameter-in-Java"><span class="nav-number">1.1.</span> <span class="nav-text">Why should I use the keyword “final” on a method parameter in Java?</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

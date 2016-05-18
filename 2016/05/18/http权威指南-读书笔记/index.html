@@ -1,0 +1,653 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络,读书笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="网络一直渣渣的，了解的不系统，实际应用中经常有障碍。例如说cache control，长连接，心跳包之类的其实就是知识的缺失，补上来就好了。所以这篇主要是 来自于阅读http权威指南的 读书笔记，加了一点类似RESTful API的内容，以实际的例子解释书上的概念.另外网络调试上的小tips，不完全是翻译，查缺补漏吧
+基础很重要！！！
+Http Message这一部分讨论的内容是 http mes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科普文 http 读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/18/http权威指南-读书笔记/index.html">
+<meta property="og:site_name" content="icy0307">
+<meta property="og:description" content="网络一直渣渣的，了解的不系统，实际应用中经常有障碍。例如说cache control，长连接，心跳包之类的其实就是知识的缺失，补上来就好了。所以这篇主要是 来自于阅读http权威指南的 读书笔记，加了一点类似RESTful API的内容，以实际的例子解释书上的概念.另外网络调试上的小tips，不完全是翻译，查缺补漏吧
+基础很重要！！！
+Http Message这一部分讨论的内容是 http mes">
+<meta property="og:image" content="http://yoursite.com/image/simple_http_message.jpg">
+<meta property="og:image" content="http://yoursite.com/image/http_method_1.jpg">
+<meta property="og:image" content="http://yoursite.com/image/http_method_2.png">
+<meta property="og:image" content="http://yoursite.com/image/http_method_2.github_http_method">
+<meta property="og:image" content="http://yoursite.com/image/create_an_issue_github_example.png">
+<meta property="og:image" content="http://yoursite.com/image/edit_an_issue_github_example.png">
+<meta property="og:updated_time" content="2016-05-18T09:10:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科普文 http 读书笔记">
+<meta name="twitter:description" content="网络一直渣渣的，了解的不系统，实际应用中经常有障碍。例如说cache control，长连接，心跳包之类的其实就是知识的缺失，补上来就好了。所以这篇主要是 来自于阅读http权威指南的 读书笔记，加了一点类似RESTful API的内容，以实际的例子解释书上的概念.另外网络调试上的小tips，不完全是翻译，查缺补漏吧
+基础很重要！！！
+Http Message这一部分讨论的内容是 http mes">
+<meta name="twitter:image" content="http://yoursite.com/image/simple_http_message.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 科普文 http 读书笔记 | icy0307 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">icy0307</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                科普文 http 读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T10:40:43+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/http权威指南-读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/http权威指南-读书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>网络一直渣渣的，了解的不系统，实际应用中经常有障碍。<br>例如说cache control，长连接，心跳包之类的<br>其实就是知识的缺失，补上来就好了。<br>所以这篇主要是 来自于阅读http权威指南的 读书笔记，加了一点类似RESTful API的内容，以实际的例子解释书上的概念.另外网络调试上的小tips，不完全是翻译，查缺补漏吧</p>
+<p><strong>基础很重要！！！</strong></p>
+<h1 id="Http-Message"><a href="#Http-Message" class="headerlink" title="Http Message"></a>Http Message</h1><p>这一部分讨论的内容是 http message的格式<br>request 和 response里都有什么，包括 request header，response header里的详细内容<br><img src="/image/simple_http_message.jpg" alt="simple_http_message"></p>
+<h2 id="startLine"><a href="#startLine" class="headerlink" title="startLine"></a>startLine</h2><p><em>request header</em><br><code>GET /test/hi-there.txt HTTP/1.0</code><br>request header 里面包含了method,请求的url,以及使用的是哪个版本的http协议</p>
+<h3 id="http-method"><a href="#http-method" class="headerlink" title="http method"></a>http method</h3><p><img src="/image/http_method_1.jpg" alt="http_method_1"><br><img src="/image/http_method_2.png" alt="http_method_2"><br>这是书中的的关于 http method 描述</p>
+<p><img src="/image/http_method_2.github_http_method" alt="github_http_method"><br>这是github api v3中的例子</p>
+<h4 id="PATCH-和-POST"><a href="#PATCH-和-POST" class="headerlink" title="PATCH 和 POST"></a>PATCH 和 POST</h4><p>注意这里实际有一点已经不太一样了,多了一个<code>PATCH</code>方法。实际上<code>POST</code>被用来新建一个资源，而<code>PATCH</code>用来更新已有资源<br>例如 对 git 中一个repository的issue进行操作<br><img src="/image/create_an_issue_github_example.png" alt="create_an_issue_github_example"><br><img src="/image/edit_an_issue_github_example.png" alt="edit_an_issue_github_example"></p>
+<p>PATCH是一个相对新的概念，所以Github v3 API接口依旧接收POST请求. 而在另一个网站<a href="https://devcenter.heroku.com/articles/platform-api-reference#methods" target="_blank" rel="external">heroku</a>的接口中，使用POST需要像request header中添加信息<code>X-Http-Method-Override: PATC</code></p>
+<p><em>response header</em><br><code>HTTP/1.0 200 OK</code></p>
+<h1 id="TCP与Http的关系（working-中）"><a href="#TCP与Http的关系（working-中）" class="headerlink" title="TCP与Http的关系（working 中）"></a>TCP与Http的关系（working 中）</h1><p>关于http是如何工作在tcp上的一直都不是很了解。尤其是以前不知道看什么，简直是玄学！<br>非常不了解的概念有：</p>
+<ol>
+<li>我们是如何通过 url 就知道端口号的？（仅仅通过 URL protocol prefix “<a href="http://&quot;吗）" target="_blank" rel="external">http://&quot;吗）</a></li>
+<li><p>tcp以外断开连接的时候，双方都会得到通知吗？具体是怎样的通知？反映在http上是怎么样的的？</p>
+<blockquote>
+<p>链路断开, 没有写操作的TCP连接是感知不到的, 除非这个时候发送数据给服务器, 造成写超时, 否则TCP连接不会知道断开了. 主动kill掉一方的进程, 另一方会关闭TCP连接, 是系统代进程给服务器发的FIN. TCP连接就是这样, 只有明确的收到对方发来的关闭连接的消息(收到RST也会关闭, 大家都懂), 或者自己意识到发生了写超时, 否则它认为连接还存在.<br><a href="http://blog.csdn.net/softwave/article/details/50997545" target="_blank" rel="external">这段话</a>是什么意思？服务器有写操作吗？客户端掉线服务器不知道吗？</p>
+</blockquote>
+</li>
+<li><p>什么是心跳包，为什么要有心跳包?如何实现一个心跳包？</p>
+</li>
+</ol>
+<p>希望通过阅读这本书的得到解决。</p>
+<blockquote>
+<p>HTTP connection management has been a bit of a black art, learned as much from experimentation and apprenticeship as from published literature. In this chapter, you’ll learn about:</p>
+<ul>
+<li>How HTTP uses TCP connections</li>
+<li>Delays, bottlenecks and clogs in TCP connections</li>
+<li>HTTP optimizations, including parallel, keep-alive, and pipelined connections</li>
+<li>Dos and don’ts for managing connections</li>
+</ul>
+</blockquote>
+<h1 id="工具和一些有用的链接"><a href="#工具和一些有用的链接" class="headerlink" title="工具和一些有用的链接"></a>工具和一些有用的链接</h1><h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p>主要是 termimal使用很方便 curl<br>几个常用参数<br><code>-v</code> 显示全部<br><code>-i</code> 包含header<br><code>-I</code> 只显示header ，通常看头部信息的时候，<code>-v``-I</code>一起用<br><code>-H</code> custom header<br><code>-d</code> HTTP POST data<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ curl -n -X PUT https://api.heroku.com/apps/<span class="variable">$APP_ID_OR_NAME</span>/buildpack-installations \</span><br><span class="line">  <span class="_">-d</span> <span class="string">'&#123;</span><br><span class="line">  "updates": [</span><br><span class="line">    &#123;</span><br><span class="line">      "buildpack": "https://github.com/heroku/heroku-buildpack-ruby"</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;'</span> \</span><br><span class="line">  -H <span class="string">"Content-Type: application/json"</span> \</span><br><span class="line">  -H <span class="string">"Accept: application/vnd.heroku+json; version=3"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="postMan"><a href="#postMan" class="headerlink" title="postMan"></a>postMan</h2><h2 id="API-SAMPLE"><a href="#API-SAMPLE" class="headerlink" title="API SAMPLE"></a>API SAMPLE</h2><ul>
+<li><p><a href="https://geemus.gitbook.io/http-api-design/content/en/index.html" target="_blank" rel="external">HTTP design guide</a> 这是一个很完整的api design的原则<br>更棒的是<br>他有例子 <a href="https://devcenter.heroku.com/articles/platform-api-reference#add-on-action" target="_blank" rel="external">https://devcenter.heroku.com/articles/platform-api-reference#add-on-action</a></p>
+</li>
+<li><p>github 的 API： <a href="https://developer.github.com/guides/getting-started/" target="_blank" rel="external">https://developer.github.com/guides/getting-started/</a><br><a href="https://developer.github.com/v3/" target="_blank" rel="external">https://developer.github.com/v3/</a></p>
+</li>
+<li>一个RESTful API 的例子， 来自思科 <a href="https://github.com/CiscoDevNet/api-design-guide" target="_blank" rel="external">https://github.com/CiscoDevNet/api-design-guide</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag">#网络</a>
+          
+            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/16/java-tip-enum和gson的搭配使用/" rel="next" title="java tip: enum和gson的搭配使用">
+                <i class="fa fa-chevron-left"></i> java tip: enum和gson的搭配使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/18/http权威指南-读书笔记/"
+           data-title="科普文 http 读书笔记" data-url="http://yoursite.com/2016/05/18/http权威指南-读书笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="icy0307" />
+          <p class="site-author-name" itemprop="name">icy0307</p>
+          <p class="site-description motion-element" itemprop="description">问渠哪得清如许，为有源头活水来</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Http-Message"><span class="nav-number">1.</span> <span class="nav-text">Http Message</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#startLine"><span class="nav-number">1.1.</span> <span class="nav-text">startLine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http-method"><span class="nav-number">1.1.1.</span> <span class="nav-text">http method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PATCH-和-POST"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">PATCH 和 POST</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP与Http的关系（working-中）"><span class="nav-number">2.</span> <span class="nav-text">TCP与Http的关系（working 中）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具和一些有用的链接"><span class="nav-number">3.</span> <span class="nav-text">工具和一些有用的链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#curl"><span class="nav-number">3.1.</span> <span class="nav-text">curl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#postMan"><span class="nav-number">3.2.</span> <span class="nav-text">postMan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-SAMPLE"><span class="nav-number">3.3.</span> <span class="nav-text">API SAMPLE</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">icy0307</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"icy0307"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
